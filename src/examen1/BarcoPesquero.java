@@ -1,29 +1,34 @@
 package examen1;
 
-public class BarcoPesquero extends Barco {
+public final class BarcoPesquero extends Barco {
     private int pecesCapturados;
     private TipoPesquero tipoPesquero;
 
-    public BarcoPesquero(TipoPesquero tipoPesquero) {
-        super("PESQUERO");
-        pecesCapturados=0;
+    public BarcoPesquero(String nombre, TipoPesquero tipoPesquero) {
+        super(nombre);
+        this.tipoPesquero = tipoPesquero;
+        this.pecesCapturados = 0;
     }
 
-    public void agregarElemento() {
+    @Override
+    public void agregarElemento(){
         pecesCapturados++;
     }
 
-    public double vaciarCobrar() {
+    @Override
+    public double vaciarCobrar(){
         double total=pecesCapturados*tipoPesquero.price;
         pecesCapturados=0;
         return total;
     }
 
-    public double precioElemento() {
+    @Override
+    public double precioElemento(){
         return tipoPesquero.price;
     }
 
-    public String toString() {
-        return "\nBarco Pesquero: "+tipoPesquero+"\nPeces Capturados: "+pecesCapturados;
+    @Override
+    public String toString(){
+        return super.toString()+"\nBarco pesquero de "+tipoPesquero+"\nCantidad de peces capturados: "+pecesCapturados;
     }
 }
